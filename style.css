@@ -1,0 +1,240 @@
+:root{
+  --bg:#008080;
+  --window-bg:#c0c0c0;
+  --titlebar:#000080;
+  --title-text:#ffffff;
+  --button-face:#d4d0c8;
+  --button-shadow:#808080;
+  --font-stack: "Segoe UI", "MS Sans Serif", Tahoma, Geneva, sans-serif;
+  --base-width:1024;
+  --base-height:768;
+}
+
+html,body{
+  height:100%;
+  margin:0;
+  background:linear-gradient(180deg,var(--bg),#006060);
+  font-family:var(--font-stack);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  -webkit-user-select:none;
+  user-select:none;
+}
+
+#app-root{
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:2vh;
+  box-sizing:border-box;
+}
+
+.win95-window{
+  width:min(92vw,1000px);
+  height:min(86vh,700px);
+  background:var(--window-bg);
+  display:flex;
+  flex-direction:column;
+  border-top:2px solid #ffffff;
+  border-left:2px solid #ffffff;
+  border-right:2px solid #404040;
+  border-bottom:2px solid #404040;
+  box-shadow: 4px 6px 0 rgba(0,0,0,0.15);
+  resize:both;
+  overflow:hidden;
+  position:relative;
+  min-width:300px;
+  min-height:200px;
+  transform-origin: center top;
+  touch-action:none;
+}
+
+.titlebar{
+  height:34px;
+  background:linear-gradient(180deg,var(--titlebar),#00004d);
+  color:var(--title-text);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:2px 6px;
+  box-sizing:border-box;
+  border-bottom:2px solid #404040;
+}
+
+.titlebar-left{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.app-icon{
+  width:18px;
+  height:18px;
+  image-rendering:pixelated;
+}
+
+.title-text{
+  font-weight:700;
+  font-size:14px;
+  line-height:18px;
+  user-select:none;
+}
+
+.titlebar-right{
+  display:flex;
+  gap:6px;
+}
+
+.win-btn{
+  width:28px;
+  height:22px;
+  background:linear-gradient(180deg,var(--button-face),#b8b8b8);
+  border:2px solid var(--button-shadow);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  font-weight:700;
+  font-size:12px;
+  line-height:1;
+  padding:0;
+}
+
+.menubar{
+  background:linear-gradient(180deg,#e0e0e0,#d0d0d0);
+  border-top:1px solid #fff;
+  border-bottom:1px solid #808080;
+  padding:4px 6px;
+  box-sizing:border-box;
+  user-select:none;
+}
+
+.menubar ul{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.menu {
+  position: relative;
+  padding: 3px 6px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  cursor: default;
+  z-index: 1;
+}
+
+.menu:focus, .menu:hover{
+  background:#000080;
+  color:#fff;
+  outline:none;
+}
+
+/* --- FIXED SUBMENU VISIBILITY --- */
+.submenu {
+  display: none !important; /* force hidden by default */
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #f0f0f0;
+  border: 2px outset #fff;
+  box-shadow: 2px 2px 0 #808080;
+  padding: 2px;
+  margin-top: 2px;
+  z-index: 999;
+  transition: opacity 0.05s ease-in;
+}
+
+.menu.open > .submenu {
+  display: block !important;
+  visibility: visible;
+  opacity: 1;
+}
+
+
+
+.submenu li{
+  padding:6px 12px;
+  cursor:pointer;
+  white-space:nowrap;
+}
+
+.submenu li:hover {
+  background: #c0c0c0; /* light gray highlight */
+  color: #000000;       /* black text */
+  border: 1px inset #ffffff;
+  padding: 5px 11px;
+}
+
+
+
+.window-body{
+  flex:1;
+  padding:8px;
+  box-sizing:border-box;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+#editor{
+  flex:1;
+  width:100%;
+  resize:none;
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size:14px;
+  line-height:1.4;
+  padding:8px;
+  box-sizing:border-box;
+  border:2px inset #fff;
+  background:#ffffff;
+  color:#000;
+  outline:none;
+  caret-color:#000;
+}
+
+.statusbar{
+  height:22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 8px;
+  font-size:12px;
+  border-top:2px solid #808080;
+  background:linear-gradient(180deg,#d0d0d0,#c8c8c8);
+}
+
+.toast{
+  position:fixed;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:24px;
+  background:#111;
+  color:#000000;
+  padding:8px 12px;
+  border-radius:4px;
+  font-size:13px;
+  opacity:0.95;
+  z-index:9999;
+}
+
+.hidden{
+  display:none;
+}
+
+@media (max-width:520px){
+  .win95-window{
+    width:96vw;
+    height:92vh;
+    min-width:unset;
+  }
+  .title-text{font-size:12px}
+  #editor{font-size:13px}
+}

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<base href="./" />
+<link rel="manifest" href="manifest.json" />
+<link rel="icon" href="assets/icon-192.png" />
+<meta name="theme-color" content="#000080" />
+<title>Simple Notes - Notepad</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+<div id="app-root">
+  <div id="notepad-window" class="win95-window" role="application" aria-label="Notepad">
+    <div class="titlebar">
+      <div class="titlebar-left">
+        <img src="assets/logo.svg" alt="" class="app-icon" />
+        <div class="title-text">Untitled - Simple Notes</div>
+      </div>
+      <div class="titlebar-right">
+        <button id="min-btn" class="win-btn">_</button>
+        <button id="max-btn" class="win-btn">▢</button>
+        <button id="close-btn" class="win-btn">✕</button>
+      </div>
+    </div>
+
+    <nav class="menubar" role="menubar">
+      <ul>
+        <li class="menu" tabindex="0" data-menu="file">File
+          <ul class="submenu" data-menu="file">
+            <li id="file-new">New</li>
+            <li id="file-open">Open</li>
+            <li id="file-save">Save</li>
+            <li id="file-saveas">Save As...</li>
+            <li id="file-install">Install App</li>
+          </ul>
+        </li>
+        <li class="menu" tabindex="0" data-menu="edit">Edit
+          <ul class="submenu" data-menu="edit">
+            <li id="edit-undo">Undo</li>
+            <li id="edit-redo">Redo</li>
+            <li id="edit-cut">Cut</li>
+            <li id="edit-copy">Copy</li>
+            <li id="edit-paste">Paste</li>
+            <li id="edit-selectall">Select All</li>
+          </ul>
+        </li>
+        <li class="menu" tabindex="0" data-menu="format">Format
+          <ul class="submenu" data-menu="format">
+            <li id="format-wordwrap">Toggle Word Wrap</li>
+            <li id="format-font">Font...</li>
+          </ul>
+        </li>
+        <li class="menu" tabindex="0" data-menu="help">Help
+          <ul class="submenu" data-menu="help">
+            <li id="help-about">About</li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="window-body">
+      <textarea id="editor" spellcheck="false" autocapitalize="off" autocorrect="off" autocomplete="off"></textarea>
+    </div>
+
+    <div class="statusbar">
+      <div id="status-left">Ready</div>
+      <div id="status-right">Ln 1, Col 1</div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
